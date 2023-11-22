@@ -1,6 +1,8 @@
 ﻿using DinnerMetting.Application.Common;
+using DinnerMetting.Application.Persistence;
 using DinnerMetting.Infrastructure.Authentication;
 using DinnerMetting.Infrastructure.Authentication.Models;
+using DinnerMetting.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +14,9 @@ public static class DependencyInjection
     {
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 }

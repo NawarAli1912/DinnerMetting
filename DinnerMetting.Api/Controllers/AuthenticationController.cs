@@ -23,7 +23,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult login(LoginRequest request)
+    public IActionResult Login(LoginRequest request)
     {
         var result = _authenticationService.Login(request.Email, request.Password);
         return Ok(result);

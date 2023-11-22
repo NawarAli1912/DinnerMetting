@@ -1,5 +1,5 @@
 using DinnerMetting.Application;
-using DinnerMetting.Application.Authentication;
+using DinnerMetting.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSwaggerGen();
 
     builder.Services.AddApplication();
+    builder.Services.AddInfrastructure(builder.Configuration);
 }
 
 

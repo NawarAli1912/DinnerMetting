@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DinnerMetting.Application.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,13 @@ namespace DinnerMetting.Application.Authentication;
 
 public class AuthenticationService : IAuthenticationService
 {
+    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+
+    public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)
+    {
+        _jwtTokenGenerator = jwtTokenGenerator;
+    }
+
     public AuthenticationResult Login(string email, string password)
     {
         return new AuthenticationResult(Guid.NewGuid(), "firstName", "lastName", email, "token");
@@ -15,6 +23,14 @@ public class AuthenticationService : IAuthenticationService
 
     public AuthenticationResult Register(string firstName, string lastName, string email, string password)
     {
-        return new AuthenticationResult(Guid.NewGuid(), firstName, lastName, email, "token");
+        // Check if user already exists
+
+        // Creatte user (generate unique ID)
+
+        // Create JWT token
+        Guid userId = Guid.NewGuid();
+        var token = _jwtTokenGenerator.Generate(userId.ToString(), firstName, lastName);
+
+        return new AuthenticationResult(userId, firstName, lastName, email, token);
     }
 }

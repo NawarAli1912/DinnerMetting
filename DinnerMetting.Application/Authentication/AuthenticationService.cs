@@ -1,6 +1,8 @@
 ﻿using DinnerMetting.Application.Common;
 using DinnerMetting.Application.Persistence;
 using DinnerMetting.Domain.Entities;
+using DinnerMetting.Domain.Errors;
+using DinnerMetting.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,17 +22,19 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public Result<AuthenticationResult> Login(
+        string email,
+        string password)
     {
         // Check the user exists
         if (_userRepository.GetUserByEmail(email) is not User user)
         {
-            throw new Exception("The email or the password is incorrect.");
+            return Errors.Authentication.InvalidCredentials;
         }
         // Validate the password 
         if (user.Password != password)
         {
-            throw new Exception("The email or the password is incorrect.");
+            return Errors.Authentication.InvalidCredentials;
         }
 
         // Create the JWT token
@@ -45,12 +49,16 @@ public class AuthenticationService : IAuthenticationService
 
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public Result<AuthenticationResult> Register(
+        string firstName,
+        string lastName,
+        string email,
+        string password)
     {
         // Check if user already exists
         if (_userRepository.GetUserByEmail(email) is not null)
         {
-            throw new Exception("User with given email already exists.");
+            return Errors.User.DuplicateEmail;
         }
 
         // Creatte user (generate unique ID)

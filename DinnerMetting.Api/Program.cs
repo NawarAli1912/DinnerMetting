@@ -1,4 +1,4 @@
-using DinnerMetting.Api.Controllers.ErrorsHandlers;
+using DinnerMetting.Api.Common.Errors;
 using DinnerMetting.Application;
 using DinnerMetting.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Infrastructure;

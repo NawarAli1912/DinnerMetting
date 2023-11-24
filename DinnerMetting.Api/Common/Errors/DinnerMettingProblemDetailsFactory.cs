@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
+using DinnerMetting.Domain.SharedKernel;
+using DinnerMetting.Api.Common.Http;
 
-namespace DinnerMetting.Api.Controllers.ErrorsHandlers;
+namespace DinnerMetting.Api.Common.Errors;
 
 public class DinnerMettingProblemDetailsFactory : ProblemDetailsFactory
 {
@@ -87,7 +89,11 @@ public class DinnerMettingProblemDetailsFactory : ProblemDetailsFactory
         {
             problemDetails.Extensions["traceId"] = traceId;
         }
-
         // Adding extensions 
+        var errorCodes = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
+        if (errorCodes != null)
+        {
+            problemDetails.Extensions.Add("errorCodes", errorCodes.Select(e => e.Code));
+        }
     }
 }

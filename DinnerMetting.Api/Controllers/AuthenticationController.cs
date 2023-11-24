@@ -1,6 +1,8 @@
 ﻿using DinnerMetting.Application.Authentication;
 using DinnerMetting.Contracts.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 namespace DinnerMetting.Api.Controllers;
 
@@ -19,13 +21,19 @@ public class AuthenticationController : ControllerBase
     public IActionResult Register(RegisterRequest request)
     {
         var result = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
-        return Ok(result);
+
+        return result.Match(
+            value => Ok(value),
+            error => Problem(statusCode: StatusCodes.Status409Conflict));
     }
 
     [HttpPost("login")]
     public IActionResult Login(LoginRequest request)
     {
         var result = _authenticationService.Login(request.Email, request.Password);
-        return Ok(result);
+
+        return result.Match(
+            value => Ok(value),
+            error => Problem(statusCode: StatusCodes.Status409Conflict));
     }
 }

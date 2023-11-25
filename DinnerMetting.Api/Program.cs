@@ -8,10 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-
-    builder.Services.AddApi()
-            .AddApplication().
-            AddInfrastructure(builder.Configuration);
+    builder.Services
+            .AddApi()
+            .AddApplication()
+            .AddInfrastructure(builder.Configuration);
 }
 
 
@@ -25,7 +25,8 @@ var app = builder.Build();
 
     app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
     app.MapControllers();
-
     app.Run();
 }

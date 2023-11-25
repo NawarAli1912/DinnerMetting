@@ -1,5 +1,5 @@
 ﻿using DinnerMetting.Application.Authentication.Common;
-using DinnerMetting.Application.Common;
+using DinnerMetting.Application.Common.JWT;
 using DinnerMetting.Application.Persistence;
 using DinnerMetting.Domain.Entities;
 using DinnerMetting.Domain.Errors;

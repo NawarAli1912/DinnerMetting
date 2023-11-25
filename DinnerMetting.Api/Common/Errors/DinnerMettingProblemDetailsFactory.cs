@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using DinnerMetting.Api.Common.Http;
+using DinnerMetting.Domain.SharedKernel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
-using DinnerMetting.Domain.SharedKernel;
-using DinnerMetting.Api.Common.Http;
 
 namespace DinnerMetting.Api.Common.Errors;
 
@@ -90,10 +90,10 @@ public class DinnerMettingProblemDetailsFactory : ProblemDetailsFactory
             problemDetails.Extensions["traceId"] = traceId;
         }
         // Adding extensions 
-        var errorCodes = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
-        if (errorCodes != null)
+        List<Error>? errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
+        if (errors is not null)
         {
-            problemDetails.Extensions.Add("errorCodes", errorCodes.Select(e => e.Code));
+            problemDetails.Extensions.Add("errors", errors.Select(e => e.Code));
         }
     }
 }

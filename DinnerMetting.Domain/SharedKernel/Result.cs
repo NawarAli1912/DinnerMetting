@@ -1,6 +1,6 @@
 ﻿namespace DinnerMetting.Domain.SharedKernel;
 
-public readonly record struct Result<T>
+public readonly record struct Result<T> : IResult
 {
 
     private readonly T? _value = default;

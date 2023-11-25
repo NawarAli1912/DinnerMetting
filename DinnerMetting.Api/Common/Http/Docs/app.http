@@ -1,0 +1,7 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@host = https://localhost:7166
+@contentType = application/json
+
+GET {{host}}/dinners
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwM2JhMGMzYy05MDUwLTRlZWItODY4Zi0yY2VmZWRiNjBjYWMiLCJqdGkiOiIyOGY4Y2RlZS00OGRkLTQwMTYtYjY5NS05NjgxNTYwMjNiYjkiLCJnaXZlbl9uYW1lIjoiTmF3YXIiLCJmYW1pbHlfbmFtZSI6IkFsaSIsImV4cCI6MTcwMDkxODIzNCwiaXNzIjoiRGlubmVyTWV0dGluZy5BcGkiLCJhdWQiOiJEaW5uZXJNZXR0aW5nIn0.dcgq_uPWHWvDQ9CZeQtYaQYKpGoqdgSf7z1aTOAUDvU

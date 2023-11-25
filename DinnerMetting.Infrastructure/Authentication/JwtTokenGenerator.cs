@@ -1,4 +1,4 @@
-﻿using DinnerMetting.Application.Common;
+﻿using DinnerMetting.Application.Common.JWT;
 using DinnerMetting.Infrastructure.Authentication.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

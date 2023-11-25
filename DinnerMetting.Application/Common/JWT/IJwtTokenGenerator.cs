@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DinnerMetting.Application.Common;
+namespace DinnerMetting.Application.Common.JWT;
 
 public interface IJwtTokenGenerator
 {

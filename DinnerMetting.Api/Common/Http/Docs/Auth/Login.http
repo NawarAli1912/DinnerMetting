@@ -1,11 +1,8 @@
-@root = https://localhost
-@port = 7166
+@host = https://localhost:7166
 @contentType = application/json
-@acceptLanguae = en-US,en;q=0.5
 
-POST {{root}}:{{port}}/auth/login
+POST {{host}}/auth/login
 Content-Type: {{contentType}}
-Accept-Language: {{acceptLanguae}}
 
 {
   "email": "nr.ali@gmail.com"

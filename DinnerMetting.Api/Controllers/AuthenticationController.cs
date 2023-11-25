@@ -1,8 +1,9 @@
-﻿using DinnerMetting.Application.Authentication;
+﻿using DinnerMetting.Application.Authentication.Command.Register;
+using DinnerMetting.Application.Authentication.Queries;
 using DinnerMetting.Contracts.Authentication;
+using MapsterMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DinnerMetting.Api.Controllers;
 
@@ -10,30 +11,33 @@ namespace DinnerMetting.Api.Controllers;
 [Route("auth")]
 public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationService _authenticationService;
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
 
-    public AuthenticationController(IAuthenticationService authenticationService)
+    public AuthenticationController(ISender mediator, IMapper mapper)
     {
-        _authenticationService = authenticationService;
+        _mediator = mediator;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var result = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
+        var result = await _mediator.Send(_mapper.Map<RegisterCommand>(request));
+
 
         return result.Match(
-            value => Ok(value),
-            error => Problem(statusCode: StatusCodes.Status409Conflict));
+            value => Ok(_mapper.Map<AuthenticationResponse>(value)),
+            errors => Problem(errors));
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        var result = _authenticationService.Login(request.Email, request.Password);
+        var result = await _mediator.Send(_mapper.Map<LoginQuery>(request));
 
         return result.Match(
-            value => Ok(value),
-            error => Problem(statusCode: StatusCodes.Status409Conflict));
+            value => Ok(_mapper.Map<AuthenticationResponse>(value)),
+            errors => Problem(errors));
     }
 }

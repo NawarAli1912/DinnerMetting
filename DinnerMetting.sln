@@ -5,13 +5,13 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinnerMetting.Api", "DinnerMetting.Api\DinnerMetting.Api.csproj", "{944015DA-358C-47E4-B303-A63CB50E83AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinnerMetting.Contracts", "DinnerMetting.Contracts\DinnerMetting.Contracts.csproj", "{1BD9C71D-6BB9-4D5D-AB8E-923202F1D624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinnerMetting.Contracts", "DinnerMetting.Contracts\DinnerMetting.Contracts.csproj", "{1BD9C71D-6BB9-4D5D-AB8E-923202F1D624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinnerMetting.Infrastructure", "DinnerMetting.Infrastructure\DinnerMetting.Infrastructure.csproj", "{9FE062B4-3811-47BC-A0A8-7A002919E117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinnerMetting.Infrastructure", "DinnerMetting.Infrastructure\DinnerMetting.Infrastructure.csproj", "{9FE062B4-3811-47BC-A0A8-7A002919E117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinnerMetting.Application", "DinnerMetting.Application\DinnerMetting.Application.csproj", "{181ED2F8-42FA-4C68-8161-570257A987F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinnerMetting.Application", "DinnerMetting.Application\DinnerMetting.Application.csproj", "{181ED2F8-42FA-4C68-8161-570257A987F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinnerMetting.Domain", "DinnerMetting.Domain\DinnerMetting.Domain.csproj", "{5C6AD61A-2811-49FF-B1F6-385210529436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DinnerMetting.Domain", "DinnerMetting.Domain\DinnerMetting.Domain.csproj", "{5C6AD61A-2811-49FF-B1F6-385210529436}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

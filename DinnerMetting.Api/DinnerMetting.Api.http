@@ -1,0 +1,10 @@
+﻿@DinnerMetting.Api_HostAddress = https://localhost:7166
+
+POST {{DinnerMetting.Api_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  //LoginRequest
+}
+
+###
